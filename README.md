@@ -31,7 +31,6 @@ AgroVet is an AI-powered web application built using Python Flask to assist farm
 
 
 ## Project Structure
-
 finalyear/
 ├── app.py
 ├── s1.py
