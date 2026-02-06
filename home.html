@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroVet</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;700&display=swap');
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+      position: relative;
+    }
+
+    /* Background Slider */
+    .background-slider {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      background-position: center;
+      animation: slide 15s infinite linear;
+    }
+
+    @keyframes slide {
+      0%, 100% { background-image: url('/static/home.jpeg'); }
+      33% { background-image: url('/static/home.jpeg'); }
+      66% { background-image: url('/static/home.jpeg'); }
+    }
+
+    .container {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7); 
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      width: 80%;
+      max-width: 800px;
+    }
+
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #ffcc29; 
+    }
+    
+    p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      color: #ddd; 
+    }
+
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .button {
+      background: linear-gradient(45deg, #00c9ff, #92fe9d); 
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(45deg, #4facfe, #00f2fe); 
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+
+    footer a {
+      color: #ffcc29;
+      text-decoration: none;
+    }
+
+    .language-select {
+      position: absolute;
+      top: 10px;
+      right: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="background-slider"></div>
+
+  <div class="language-select">
+    <label for="language">Language:</label>
+    <select id="language" onchange="changeLanguage()">
+      <option value="en">English</option>
+      <option value="kn">Kannada</option>
+      <option value="hi">Hindi</option>
+      <option value="ta">Tamil</option>
+      <option value="te">Telugu</option>
+    </select>
+  </div>
+
+  <div class="container" id="content">
+    <h1 data-translate="AgroVet">AgroVet</h1>
+    <p data-translate='"Empowering Animal Rearing with Modern Solutions"'>"Empowering Animal Rearing with Modern Solutions"</p>
+    <div class="button-grid">
+      <a href="/rearing-guidance" class="button" data-translate="Rearing Guidance">Rearing Guidance</a>
+      <a href="/ai-chatbot" class="button" data-translate="AI Chatbot">AI Chatbot</a>
+      <a href="/disease-detection" class="button" data-translate="Disease Detection">Disease Detection</a>
+      <a href="/govt-schemes" class="button" data-translate="Govt Schemes">Govt Schemes</a>
+      <a href="/veterinary_map" class="button" data-translate="Veterinary Maps">veterinary map</a>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
+      document.getElementById("language").value = savedLanguage;
+      translatePage(savedLanguage);
+    });
+
+    function changeLanguage() {
+      const selectedLanguage = document.getElementById("language").value;
+      localStorage.setItem("selectedLanguage", selectedLanguage);
+      translatePage(selectedLanguage);
+    }
+
+    function translatePage(targetLanguage) {
+      const elements = document.querySelectorAll("[data-translate]");
+
+      if (targetLanguage === "en") {
+        elements.forEach((el) => {
+          el.innerText = el.getAttribute("data-translate");
+        });
+        return;
+      }
+
+      elements.forEach((el) => {
+        const originalText = el.getAttribute("data-translate");
+        fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLanguage}&dt=t&q=${encodeURIComponent(originalText)}`)
+          .then((response) => response.json())
+          .then((data) => {
+            el.innerText = data[0][0][0];
+          })
+          .catch((error) => console.error("Translation error:", error));
+      });
+    }
+  </script>
+</body>
+</html>

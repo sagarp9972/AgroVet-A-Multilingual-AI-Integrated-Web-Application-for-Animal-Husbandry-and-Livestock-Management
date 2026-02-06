@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AgroVet</title>
+  <style>
+   
+    body {
+      margin: 0;
+      padding: 0;
+      font-family: 'Poppins', sans-serif;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('home.jpeg') no-repeat center center/cover; 
+      color: #fff;
+    }
+
+   
+    .container {
+      text-align: center;
+      background: rgba(0, 0, 0, 0.7); 
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+      width: 80%;
+      max-width: 800px;
+    }
+
+    
+    h1 {
+      font-size: 3em;
+      margin-bottom: 10px;
+      color: #ffcc29;
+    }
+    p {
+      font-size: 1.3em;
+      margin-bottom: 30px;
+      color: #ddd; 
+    }
+
+    
+    .button-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    
+    .button {
+      background: linear-gradient(45deg, #00c9ff, #92fe9d);
+      color: white;
+      padding: 20px;
+      text-decoration: none;
+      border-radius: 10px;
+      font-size: 1.1em;
+      font-weight: bold;
+      text-align: center;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    
+    .button:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 6px 15px rgba(0, 0, 0, 0.4);
+      background: linear-gradient(45deg, #4facfe, #00f2fe); 
+    }
+
+    footer {
+      margin-top: 20px;
+      font-size: 0.9em;
+      color: #aaa;
+    }
+    footer a {
+      color: #ffcc29; 
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>AgroVet</h1>
+    <p>"Empowering Animal Rearing with Modern Solutions"</p>
+    <div class="button-grid">
+      <a href="/" class="button">AI Chatbot</a>
+      <a href="/rearing-guidance" class="button">Rearing Guidance</a>
+      <a href="/ai-chatbot" class="button">AI Chatbot</a>
+      <a href="/disease-detection" class="button">Disease Detection</a>
+      <a href="information.html" class="button">Info Hub</a>
+      <a href="latest-innovations.html" class="button">Latest Innovations</a>
+      <a href="govt-schemes.html" class="button">Govt Schemes</a>
+    </div>
+   
+  </div>
+</body>
+</html>
