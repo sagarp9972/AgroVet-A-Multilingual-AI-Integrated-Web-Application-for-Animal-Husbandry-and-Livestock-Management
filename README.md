@@ -1,116 +1,117 @@
-🌾 AgroVet – Multilingual AI-Integrated Web Application for Animal Husbandry and Livestock Management
+# AgroVet – Multilingual AI-Integrated Web Application for Animal Husbandry and Livestock Management
 
-AgroVet is a smart AI-powered web application developed using Python Flask that assists farmers and livestock owners in managing animal health and improving productivity. The system integrates machine learning and deep learning models to predict livestock health conditions and provides access to veterinary services and government schemes through a simple multilingual interface.
+AgroVet is an AI-powered web application built using Python Flask to assist farmers and livestock owners in monitoring animal health and improving productivity. The system integrates machine learning and deep learning models to predict livestock diseases and provides veterinary services and government scheme information through a multilingual interface.
 
-🚀 Features
+---
 
-🧠 AI-based livestock disease/health prediction
+## Features
 
-🌐 Web application using Flask
+- AI-based livestock disease prediction  
+- Web application using Flask  
+- Multilingual user interface  
+- Veterinary service locator  
+- Government schemes information  
+- CSV-based livestock dataset  
 
-🗣 Multilingual-friendly user interface
+---
 
-📍 Veterinary service locator (map integration)
+## Technologies Used
 
-📜 Government livestock schemes information
+### Backend
+- Python  
+- Flask  
+- TensorFlow / Keras  
 
-📊 Livestock data processing using CSV dataset
+### Frontend
+- HTML  
+- CSS  
 
-🛠 Technologies Used
+### Data
+- CSV files  
 
-Backend
+---
 
-Python
+## Project Structure
 
-Flask
-
-Machine Learning / Deep Learning (Keras)
-
-Frontend
-
-HTML
-
-CSS
-
-Data
-
-CSV Dataset
-
-📂 Project Structure
 finalyear/
-│
-├── app.py                  # Main Flask application
-├── s1.py                   # Livestock data handling
-├── s2.py                   # Processing logic
-├── s3.py                   # AI model prediction
-│
-├── s1/data/
-│   └── livestock_data.csv  # Dataset
-│
-├── s3/
-│   ├── keras_model.h5      # Trained AI model
-│   └── labels.txt          # Prediction labels
-│
+├── app.py
+├── s1.py
+├── s2.py
+├── s3.py
+├── s1/data/livestock_data.csv
+├── s3/keras_model.h5
+├── s3/labels.txt
 ├── templates/
-│   ├── home.html
-│   ├── login.html
-│   ├── s1.html
-│   ├── s2.html
-│   ├── s3.html
-│   ├── veterinary_map.html
-│   └── govt-schemes.html
-│
+│ ├── home.html
+│ ├── login.html
+│ ├── s1.html
+│ ├── s2.html
+│ ├── s3.html
+│ ├── veterinary_map.html
+│ └── govt-schemes.html
 ├── static/
-│   ├── style.css
-│   └── images/
-│
+│ ├── style.css
+│ └── images/
 └── Procfile.txt
 
-⚙️ Installation & Setup
-1️⃣ Clone the Repository
+yaml
+Copy code
+
+---
+
+## Installation and Setup
+
+### Clone the repository
+
+```bash
 git clone https://github.com/yourusername/AgroVet.git
 cd AgroVet
-
-2️⃣ Install Required Packages
+Install required packages
+bash
+Copy code
 pip install flask tensorflow pandas numpy
-
-3️⃣ Run the Application
+Run the application
+bash
+Copy code
 python app.py
-
-4️⃣ Open in Browser
+Open in browser
+cpp
+Copy code
 http://127.0.0.1:5000/
-
-🔄 Workflow
-
+Workflow
 User enters livestock details
 
-Flask server processes input
+Flask server processes the request
 
-AI model predicts health condition
+AI model predicts the health condition
 
-Result displayed on web interface
+Result is displayed on the web interface
 
-🎯 Project Objective
+Project Objective
+To provide an intelligent and easy-to-use platform for farmers to manage livestock health, access veterinary services, and receive government-related information using artificial intelligence and multilingual support.
 
-To provide farmers with an easy-to-use AI-based system for livestock health monitoring, veterinary assistance, and agricultural information in multiple languages to improve animal care and reduce losses.
-
-📈 Future Enhancements
-
-Real-time language translation
-
-Mobile app version
+Future Enhancements
+Mobile application development
 
 Cloud database integration
 
-More disease prediction models
+Real-time language translation
 
-Farmer notification system
+Advanced disease prediction models
 
-🤝 Contribution
+Notification and alert system
 
-Contributions are welcome!
-Feel free to fork this project and submit pull requests.
+License
+This project is developed for academic and educational purposes.
 
-📜 License
+vbnet
+Copy code
 
-This project is for educational purposes.
+If you’d like, I can also:
+
+Write a short GitHub description  
+Add contribution guidelines  
+Add requirements.txt  
+Create a professional project banner text  
+
+Just tell me what you want next.
