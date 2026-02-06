@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animal Husbandry Guidance</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0-alpha1/css/bootstrap.min.css">
+    <style>
+        body {
+            background-color: #FAF3E0;
+            font-family: 'Arial', sans-serif;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+        }
+        .title-box {
+            background-color: #2C3E50;
+            color: #fff;
+            padding: 20px;
+            text-align: center;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        .title-box h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            color: #F5A623;
+        }
+        .title-box p {
+            font-size: 1.2em;
+        }
+        .form-select, .form-control {
+            border-radius: 8px;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        }
+        .btn-primary {
+            background-color: #2C3E50;
+            border: none;
+            border-radius: 8px;
+        }
+        .btn-primary:hover {
+            background-color: #233140;
+        }
+        .result-card {
+            background-color: #ECF0F1;
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .list-group-item {
+            background-color: #ffffff;
+            border: 1px solid #ddd;
+            color: #333;
+            font-size: 16px;
+        }
+        .list-group-item:hover {
+            background-color: #F5A623;
+        }
+        .highlight {
+            color: #2C3E50;
+            font-weight: bold;
+        }
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            font-size: 14px;
+            color: #888;
+        }
+        .animal-recommendation {
+            margin-top: 20px;
+            padding: 20px;
+            background-color: #f0f8ff;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+    </style>
+</head>
+<body>
+    <div class="language-select" style="position: absolute; top: 10px; right: 20px;">
+        <label for="language">Language:</label>
+        <select id="language" onchange="changeLanguage()">
+            <option value="en">English</option>
+            <option value="kn">Kannada</option>
+            <option value="hi">Hindi</option>
+            <option value="ta">Tamil</option>
+            <option value="te">Telugu</option>
+        </select>
+    </div>
+
+    <div class="container mt-5">
+        <div class="title-box">
+            <h1 data-translate="Personalized Animal Husbandry Guidance">Personalized Animal Husbandry Guidance</h1>
+            <p data-translate="Get tailored advice for your livestock needs">Get tailored advice for your livestock needs</p>
+        </div>
+
+        <form action="/result" method="POST">
+            <div class="mb-3">
+                <label for="animal_type" class="form-label" data-translate="Select Animal Type">Select Animal Type</label>
+                <select class="form-select" id="animal_type" name="animal_type" required>
+                    <option value="Cow">Cow</option>
+                    <option value="Buffalo">Buffalo</option>
+                    <option value="Pig">Pig</option>
+                    <option value="Goat">Goat</option>
+                    <option value="Sheep">Sheep</option>
+                    <option value="Poultry">Poultry</option>
+                    <option value="Bee Hiving">Bee Hiving</option>
+                    <option value="Sericulture">Sericulture</option>
+                </select>
+            </div>
+
+            <div class="mb-3">
+                <label for="number_of_animals" class="form-label" data-translate="Number of Animals">Number of Animals</label>
+                <input type="number" class="form-control" id="number_of_animals" name="number_of_animals" required>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100" data-translate="Get Guidance">Get Guidance</button>
+        </form>
+
+        {% if area_size %}
+        <div class="result-card">
+            <h3 class="text-center mb-4">Results for <span class="highlight">{{ animal_type }}</span> ({{ number_of_animals }} animals)</h3>
+            <ul class="list-group">
+                <li class="list-group-item">Area Required (sq ft): <span class="highlight">{{ area_size }}</span></li>
+                <li class="list-group-item">Feed Type: <span class="highlight">{{ feed_type }}</span></li>
+                <li class="list-group-item">Feed Quantity (kg/day): <span class="highlight">{{ feed_quantity }}</span></li>
+                <li class="list-group-item">Cost (INR): <span class="highlight">{{ cost_in_inr }}</span></li>
+                <li class="list-group-item">Water Supply (liters/day): <span class="highlight">{{ water_supply }}</span></li>
+                <li class="list-group-item">Hygiene Tips: <span class="highlight">{{ hygiene_tips }}</span></li>
+                <li class="list-group-item">Seasonal Tips: <span class="highlight">{{ seasonal_tips }}</span></li>
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+
+    <div class="footer">
+        <p data-translate="Personalized Animal Husbandry Guidance">Personalized Animal Husbandry Guidance</p>
+    </div>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const savedLanguage = localStorage.getItem("selectedLanguage") || "en";
+            document.getElementById("language").value = savedLanguage;
+            translatePage(savedLanguage);
+        });
+
+        function changeLanguage() {
+            const selectedLanguage = document.getElementById("language").value;
+            localStorage.setItem("selectedLanguage", selectedLanguage);
+            translatePage(selectedLanguage);
+        }
+
+        function translatePage(targetLanguage) {
+            const elements = document.querySelectorAll("[data-translate]");
+            elements.forEach((el) => {
+                const originalText = el.getAttribute("data-translate");
+                if (targetLanguage === "en") {
+                    el.innerText = originalText;
+                } else {
+                    fetch(`https://translate.googleapis.com/translate_a/single?client=gtx&sl=auto&tl=${targetLanguage}&dt=t&q=${encodeURIComponent(originalText)}`)
+                        .then(response => response.json())
+                        .then(data => el.innerText = data[0][0][0])
+                        .catch(console.error);
+                }
+            });
+        }
+    </script>
+</body>
+</html>
