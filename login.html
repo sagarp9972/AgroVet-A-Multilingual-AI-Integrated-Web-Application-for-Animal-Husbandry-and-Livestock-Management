@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login / Signup</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
+    <style>
+        body {
+            font-family: "Inter", sans-serif;
+            background-color: #FAF3E0;
+        }
+        .form-container {
+            background-color: #ffffff;
+            border-radius: 1rem;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            padding: 2rem;
+            width: 100%;
+            max-width: 400px;
+        }
+        .form-input {
+            border: 1px solid #ddd;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            font-size: 0.875rem;
+            transition: all 0.3s ease;
+        }
+        .form-input:focus {
+            outline: none;
+            border-color: #2C3E50;
+            box-shadow: 0 0 5px rgba(44, 62, 80, 0.5);
+        }
+        .btn-primary {
+            background-color: #2C3E50;
+            color: white;
+            border-radius: 0.5rem;
+            padding: 0.75rem;
+            transition: background 0.3s ease;
+        }
+        .btn-primary:hover {
+            background-color: #1E4A7A;
+        }
+        .flash-message {
+            padding: 0.75rem;
+            margin-bottom: 1rem;
+            border-radius: 0.5rem;
+            color: white;
+            text-align: center;
+        }
+        .flash-success { background-color: #2ECC71; }
+        .flash-error { background-color: #E74C3C; }
+    </style>
+</head>
+<body class="flex items-center justify-center min-h-screen">
+    <div class="form-container">
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                {% for category, message in messages %}
+                    <div class="flash-message flash-{{ category }}">{{ message }}</div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+
+        <h2 class="text-2xl font-semibold text-center text-[#2C3E50] mb-6">Login to AGRIBOT</h2>
+        
+        <!-- Login Form -->
+        <form action="{{ url_for('login') }}" method="post" class="space-y-4 mb-8">
+            <input type="text" name="username" placeholder="Username" required class="w-full form-input">
+            <input type="password" name="password" placeholder="Password" required class="w-full form-input">
+            <button type="submit" class="w-full btn-primary font-medium">Log In</button>
+        </form>
+
+        <h2 class="text-2xl font-semibold text-center text-[#2C3E50] mb-6">New User? Sign Up</h2>
+
+        <!-- Signup Form -->
+        <form action="{{ url_for('signup') }}" method="post" class="space-y-4">
+            <input type="text" name="username" placeholder="New Username" required class="w-full form-input">
+            <input type="password" name="password" placeholder="New Password" required class="w-full form-input">
+            <button type="submit" class="w-full btn-primary font-medium">Sign Up</button>
+        </form>
+    </div>
+</body>
+</html>

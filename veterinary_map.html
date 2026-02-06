@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Nearby Veterinary Hospitals</title>
+  <style>
+    body {
+      background-color: #FAF3E0;
+      font-family: 'Arial', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      max-width: 900px;
+      margin: 50px auto;
+      background-color: #ffffff;
+      border-radius: 10px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      padding: 30px;
+    }
+
+    .title-box {
+      background-color: #2C3E50;
+      color: #fff;
+      padding: 20px;
+      text-align: center;
+      border-radius: 8px;
+      margin-bottom: 20px;
+    }
+
+    .title-box h1 {
+      font-size: 2.5em;
+      margin-bottom: 10px;
+      color: #F5A623;
+    }
+
+    .title-box p {
+      font-size: 1.2em;
+    }
+
+    .map-btn {
+      background-color: #2C3E50;
+      color: #fff;
+      padding: 12px 24px;
+      font-size: 16px;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 20px;
+    }
+
+    .map-btn:hover {
+      background-color: #233140;
+    }
+
+    iframe {
+      width: 100%;
+      height: 400px;
+      border: 0;
+      border-radius: 12px;
+      margin-top: 30px;
+      box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    }
+
+    .footer {
+      text-align: center;
+      margin-top: 30px;
+      font-size: 14px;
+      color: #888;
+    }
+
+    @media (max-width: 600px) {
+      .title-box h1 {
+        font-size: 1.8em;
+      }
+
+      .map-btn {
+        width: 100%;
+      }
+
+      iframe {
+        height: 300px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="title-box">
+      <h1>Find Nearby Vet Hospitals</h1>
+      <p>Click the button to view veterinary hospitals near you</p>
+    </div>
+
+    <div style="text-align: center;">
+      <button class="map-btn" onclick="findVetHospitals()">Locate Vet Hospitals</button>
+    </div>
+
+    <!-- Static Embedded Map -->
+    <iframe
+      src="https://www.google.com/maps?q=Shimoga+Veterinary+Hospital&output=embed"
+      allowfullscreen
+      loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade">
+    </iframe>
+
+    <div class="footer">© 2025 AgroVet Hub – All Rights Reserved</div>
+  </div>
+
+  <script>
+    function findVetHospitals() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+          let lat = position.coords.latitude;
+          let lng = position.coords.longitude;
+          let mapsUrl = `https://www.google.com/maps/search/Veterinary+Hospitals+shimoga/@${lat},${lng},15z`;
+          window.open(mapsUrl, '_blank');
+        }, function(error) {
+          alert('Error: Please allow location access to use this feature.');
+        });
+      } else {
+        alert('Geolocation is not supported by your browser.');
+      }
+    }
+  </script>
+</body>
+</html>
